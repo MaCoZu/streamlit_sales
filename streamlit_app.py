@@ -72,9 +72,9 @@ if __name__ == '__main__':
         st.text(f"Expected Sales: {int(pred)}")
 
         if pred>7000:
-            st.text("Open the Store")
+            st.markdown("<span style='font-size: 20px;'>Open the Store</span>", unsafe_allow_html=True)
         else:
-            st.text("Open an Ice cream parlor")
+            st.markdown("<span style='font-size: 20px;'>Open an Ice cream parlor</span>", unsafe_allow_html=True)
 
 
 
