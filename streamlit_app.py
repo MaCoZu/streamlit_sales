@@ -23,8 +23,8 @@ if __name__ == '__main__':
     st.title("Stroe Sales Prediction")
     st.text("Enter store data")
 
-    customers = st.slider("How many customer do you expect in a day:", 0, 500)
-    competiton_distance = st.slider("How far away is your competition in meters:", 0, 5000)
+    customers = st.slider("How many customer do you expect in a day:", 100, 5000)
+    competiton_distance = st.slider("How far away is your competition in meters:", 20, 2000)
     competition_since = st.number_input("Since when is the competition there in month:", min_value=1)
 
     store_type = st.selectbox("Select the Store Type:", ('a', 'b', 'c', 'd'))
