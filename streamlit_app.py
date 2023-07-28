@@ -27,7 +27,7 @@ if __name__ == '__main__':
     competiton_distance = st.slider("How far away is your competition in meters:", 20, 2000)
     competition_since = st.number_input("Since when is the competition there in month:", min_value=1)
 
-    store_type = st.selectbox("Select the Store Type:", ('a', 'b', 'c', 'd'))
+    store_type = st.radio("Select the Store Type:",  options=['a', 'b', 'c', 'd'])
 
     # Assortment -  a = basic, b = extra, c = extended
     assortment_mapping = { "basic": "a", "extra": "b", "extended": "c" }
@@ -46,7 +46,7 @@ if __name__ == '__main__':
     # generate the prediction for the customer
     if st.button("Predict Sales"):
         pred = generate_predictions(user_df)
-        st.text(f"Expected Sales: {pred}")
+        st.text(f"Expected Sales: {int(pred)}")
 
         if pred>7000:
             st.text("Open the Store")
