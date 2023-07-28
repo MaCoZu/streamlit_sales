@@ -2,8 +2,7 @@ import streamlit as st
 import pandas as pd
 import pickle
 import pandas as pd
-from sklearn.preprocessing import LabelEncoder
-from sklearn.linear_model import LogisticRegression
+import mypreprocess as p
 
 
 def load_pickles(model_pickle_path):
@@ -12,18 +11,10 @@ def load_pickles(model_pickle_path):
     return model
 
 
-def make_predictions(processed_df, model):
-    prediction = model.predict(processed_df)
-    return prediction
-
-
-def generate_predictions(test_df):
+def generate_predictions(df):
     model_pickle_path = "./pipeline/lr_pipeline.pkl"
-
     model = load_pickles(model_pickle_path)
-
-    record = competiton_distance, 
-    prediction = make_predictions(processed_df, model)
+    prediction = model.predict(df)
     return prediction
 
 
@@ -32,18 +23,32 @@ if __name__ == '__main__':
     st.title("Stroe Sales Prediction")
     st.text("Enter store data")
 
-    competiton_distance = st.slider("How far away is your competition in meters:", 0.0, 5000)
-    competiton_distance = st.slider("How many customer do you expect in a day:", 0.0, 500)
+    customers = st.slider("How many customer do you expect in a day:", 0, 500)
+    competiton_distance = st.slider("How far away is your competition in meters:", 0, 5000)
+    competition_since = st.number_input("Since when is the competition there in month:", min_value=1)
 
     store_type = st.selectbox("Select the Store Type:", ('a', 'b', 'c', 'd'))
 
     # Assortment -  a = basic, b = extra, c = extended
+    assortment_mapping = { "basic": "a", "extra": "b", "extended": "c" }
     assortment = st.selectbox("Select the Assortment you plan to exhibit:", ("basic", "extra", "extended"))
+    assort = assortment_mapping.get(assortment, "N/A")  
+
+    user_df = pd.DataFrame([{
+                            'Customers':int(customers),
+                            'CompetitionDistance':int(competiton_distance),
+                            'Competition_Since_X_months':int(competition_since),
+                            'StoreType':str(store_type),
+                            'Assortment':str(assort)
+                            }])
+    
     
     # generate the prediction for the customer
     if st.button("Predict Sales"):
-        pred = generate_predictions(chosen_customer_data)
-        if bool(pred):
-            st.text("Customer will churn!")
+        pred = generate_predictions(user_df)
+        st.text(f"Expected Sales: {pred}")
+
+        if pred>7000:
+            st.text("Open the Store")
         else:
-            st.text("Customer not predicted to churn")
+            st.text("Open an Ice cream parlor")
