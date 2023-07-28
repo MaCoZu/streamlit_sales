@@ -20,21 +20,20 @@ def generate_predictions(df):
 
 if __name__ == '__main__':
     # make the application
-    st.title("Stroe Sales Prediction")
-    st.text("Enter store data")
+    st.title("Store Sales Prediction")
+    st.subheader("Should you open a franchise")
 
-    customers = st.slider("How many customer do you expect in a day:", 100, 5000)
-    competiton_distance = st.slider("How far away is your competition in meters:", 20, 2000)
-    competition_since = st.number_input("Since when is the competition there in month:", min_value=1)
+    # customers = st.slider("How many customer do you expect in a day:", 100, 5000)
+
+    st.markdown("<span style='font-size: 18px;'>How many customers do you expect in a day:</span>", unsafe_allow_html=True)
+    customers = st.slider("", 100, 5000)
+
+    st.markdown("<span style='font-size: 18px;'>How far away is your competition in meters:</span>", unsafe_allow_html=True)
+    competiton_distance = st.slider("", 20, 2000)
+
+    st.markdown("<span style='font-size: 18px;'>Since when is the competition there in month:</span>", unsafe_allow_html=True)
+    competition_since = st.number_input("", min_value=1)
     
-    # store_type = st.radio("Select the Store Type:",  options=['a', 'b', 'c', 'd'])
-
-    # # Assortment -  a = basic, b = extra, c = extended
-    # assortment_mapping = { "basic": "a", "extra": "b", "extended": "c" }
-    # assortment = st.radio("Select the Assortment you plan to exhibit:", ("basic", "extra", "extended"))
-    # assort = assortment_mapping.get(assortment, "N/A")  
-
-    # Use st.beta_columns() to create two columns for the radio buttons
     col1, col2 = st.columns(2)
 
     # Store Type
@@ -58,6 +57,9 @@ if __name__ == '__main__':
                             'Assortment':str(assort)
                             }])
     
+    st.text("")
+    st.text("")
+    st.text("")
     
     # generate the prediction for the customer
     if st.button("Predict Sales"):
@@ -68,3 +70,16 @@ if __name__ == '__main__':
             st.text("Open the Store")
         else:
             st.text("Open an Ice cream parlor")
+
+
+
+    custom_css = """
+    <style>
+    /* Reduce the padding and margin of the elements */
+    .element-container {
+        padding: 0px;
+        margin: 0px;
+    }
+    </style>
+    """
+    st.markdown(custom_css, unsafe_allow_html=True)
