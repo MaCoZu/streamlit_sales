@@ -26,13 +26,27 @@ if __name__ == '__main__':
     customers = st.slider("How many customer do you expect in a day:", 100, 5000)
     competiton_distance = st.slider("How far away is your competition in meters:", 20, 2000)
     competition_since = st.number_input("Since when is the competition there in month:", min_value=1)
+    
+    # store_type = st.radio("Select the Store Type:",  options=['a', 'b', 'c', 'd'])
 
-    store_type = st.radio("Select the Store Type:",  options=['a', 'b', 'c', 'd'])
+    # # Assortment -  a = basic, b = extra, c = extended
+    # assortment_mapping = { "basic": "a", "extra": "b", "extended": "c" }
+    # assortment = st.radio("Select the Assortment you plan to exhibit:", ("basic", "extra", "extended"))
+    # assort = assortment_mapping.get(assortment, "N/A")  
+
+    # Use st.beta_columns() to create two columns for the radio buttons
+    col1, col2 = st.beta_columns(2)
+
+    # Store Type
+    with col1:
+        store_type = st.radio("Select the Store Type:",  options=['a', 'b', 'c', 'd'])
 
     # Assortment -  a = basic, b = extra, c = extended
-    assortment_mapping = { "basic": "a", "extra": "b", "extended": "c" }
-    assortment = st.selectbox("Select the Assortment you plan to exhibit:", ("basic", "extra", "extended"))
-    assort = assortment_mapping.get(assortment, "N/A")  
+    assortment_mapping = {"basic": "a", "extra": "b", "extended": "c"}
+    with col2:
+        assortment = st.radio("Select the Assortment you plan to exhibit:", ("basic", "extra", "extended"))
+        assort = assortment_mapping.get(assortment, "N/A")
+
 
     user_df = pd.DataFrame([{
                             'Customers':int(customers),
