@@ -35,7 +35,7 @@ if __name__ == '__main__':
     # assort = assortment_mapping.get(assortment, "N/A")  
 
     # Use st.beta_columns() to create two columns for the radio buttons
-    col1, col2 = st.beta_columns(2)
+    col1, col2 = st.columns(2)
 
     # Store Type
     with col1:
