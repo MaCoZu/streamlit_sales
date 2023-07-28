@@ -24,35 +24,30 @@ if __name__ == '__main__':
     st.title("Store Sales Prediction")
     st.subheader("Should you open a franchise")
 
-    col1, col2, col3 = st.columns(3)
     # customers = st.slider("How many customer do you expect in a day:", 100, 5000)
-    with col1:
-        st.markdown("<span style='font-size: 18px;'>How many customers do you expect in a day:</span>", unsafe_allow_html=True)
-        customers = st.slider("", 100, 5000)
+    st.markdown("<span style='font-size: 18px;'>How many customers do you expect in a day:</span>", unsafe_allow_html=True)
+    customers = st.slider("", 100, 5000)
 
-    with col2:
-        st.markdown("")
+    st.markdown("")
+
+    st.markdown("<span style='font-size: 18px;'>How far away is your competition in meters:</span>", unsafe_allow_html=True)
+    competiton_distance = st.slider("", 20, 2000)
     
-    with col3:
-        st.markdown("<span style='font-size: 18px;'>How far away is your competition in meters:</span>", unsafe_allow_html=True)
-        competiton_distance = st.slider("", 20, 2000)
-    
-    col3, col4, col5 = st.columns(3)
 
-    with col3:
-        st.markdown("<span style='font-size: 18px;'>Since when is the competition there in month:</span>", unsafe_allow_html=True)
-        competition_since = st.number_input("", min_value=1)
+    st.markdown("<span style='font-size: 18px;'>Since when is the competition there in month:</span>", unsafe_allow_html=True)
+    competition_since = st.number_input("", min_value=1)
 
+    col1, col2 = st.columns(2)
 
     # Store Type
-    with col4:
+    with col1:
         st.write("Select the Store Type:")
         store_type = st.radio("", options=['a', 'b', 'c', 'd'])
 
     
     # Assortment -  a = basic, b = extra, c = extended
     assortment_mapping = {"basic": "a", "extra": "b", "extended": "c"}
-    with col5:
+    with col2:
         st.write("Select the Assortment you plan to exhibit:")
         assortment = st.radio("", ("basic", "extra", "extended"))
         assort = assortment_mapping.get(assortment, "N/A")
