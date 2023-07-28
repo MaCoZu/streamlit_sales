@@ -39,12 +39,14 @@ if __name__ == '__main__':
 
     # Store Type
     with col1:
-        store_type = st.radio("Select the Store Type:",  options=['a', 'b', 'c', 'd'])
+        st.write("Select the Store Type:")
+        store_type = st.radio("", options=['a', 'b', 'c', 'd'])
 
     # Assortment -  a = basic, b = extra, c = extended
     assortment_mapping = {"basic": "a", "extra": "b", "extended": "c"}
     with col2:
-        assortment = st.radio("Select the Assortment you plan to exhibit:", ("basic", "extra", "extended"))
+        st.write("Select the Assortment you plan to exhibit:")
+        assortment = st.radio("", ("basic", "extra", "extended"))
         assort = assortment_mapping.get(assortment, "N/A")
 
 
